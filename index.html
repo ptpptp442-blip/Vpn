@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gemini VPN</title>
+    <style>
+      :root {
+        --background-color: #1a1a2e;
+        --container-bg: #16213e;
+        --primary-text: #e94560;
+        --secondary-text: #ffffff;
+        --disconnected: #f0f0f0;
+        --connecting: #f7b731;
+        --connected: #00ffab;
+        --shadow-color: rgba(233, 69, 96, 0.4);
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--background-color);
+        color: var(--secondary-text);
+      }
+
+      #root {
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+      }
+
+      .vpn-app {
+        background: var(--container-bg);
+        border-radius: 20px;
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        border: 1px solid var(--primary-text);
+      }
+
+      .app-title {
+        color: var(--primary-text);
+        margin-bottom: 2rem;
+        font-size: 2rem;
+        font-weight: bold;
+      }
+
+      .connection-button {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        background-color: var(--disconnected);
+        color: var(--background-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto 1.5rem;
+        transition: all 0.3s ease-in-out;
+        box-shadow: 0 0 15px var(--disconnected);
+      }
+
+      .connection-button.connecting {
+        background-color: var(--connecting);
+        box-shadow: 0 0 25px var(--connecting);
+        animation: pulse 1.5s infinite;
+      }
+
+      .connection-button.connected {
+        background-color: var(--connected);
+        box-shadow: 0 0 25px var(--connected);
+      }
+      
+      .connection-button svg {
+        width: 60px;
+        height: 60px;
+      }
+
+      .connection-status {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+        height: 25px;
+      }
+
+      .status-disconnected { color: var(--disconnected); }
+      .status-connecting { color: var(--connecting); }
+      .status-connected { color: var(--connected); }
+
+      .ip-address {
+        font-size: 0.9rem;
+        color: #a9a9a9;
+        margin-bottom: 2rem;
+        height: 20px;
+      }
+
+      .server-select {
+        width: 100%;
+        padding: 0.8rem;
+        border-radius: 8px;
+        border: 1px solid var(--primary-text);
+        background-color: var(--background-color);
+        color: var(--secondary-text);
+        font-size: 1rem;
+        cursor: pointer;
+      }
+      
+      .server-select:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 25px var(--connecting);
+        }
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 35px var(--connecting);
+        }
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 25px var(--connecting);
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
